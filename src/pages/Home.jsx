@@ -2,6 +2,8 @@ import React from "react";
 import { useLoaderData } from "react-router";
 import ToyCards from "./toyCArds/ToyCards";
 import Slider from "../slider/Slider";
+import HomeBanner from "./HomeBanner/HomeBanner";
+import SecBanner from "./HomeBanner/SecBanner";
 
 const Home = () => {
   const toys = useLoaderData();
@@ -9,6 +11,7 @@ const Home = () => {
 
   return (
     <>
+      <SecBanner></SecBanner>
       <Slider></Slider>
 
       <div>
@@ -21,6 +24,8 @@ const Home = () => {
           <ToyCards key={hometoy.toyId} hometoy={hometoy}></ToyCards>
         ))}
       </div>
+
+      <HomeBanner></HomeBanner>
     </>
   );
 };

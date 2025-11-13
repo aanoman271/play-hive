@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between my-7">
       {" "}
       <div className="flex   items-center gap-3">
         {/* Hexagon Logo */}

@@ -1,11 +1,11 @@
 import { Component } from "react";
 import { createBrowserRouter } from "react-router";
-import Root from "../assets/Root/Root";
 import Home from "../pages/Home";
 import Profile from "../pages/profile/Profile";
 import ToyDeatail from "../pages/toyDeatail/ToyDeatail";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import Root from "../assets/Root/Root";
 
 const router = createBrowserRouter([
   {
