@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const location = useLocation();
+
   const { setalert, alert, errr, setErr, userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const signinHAndle = (e) => {
@@ -12,13 +14,12 @@ const Login = () => {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
     userLogin(email, password)
       .then((result) => {
         setalert("Login succesfull");
-        navigate("/");
         console.log(result.user);
         setErr("");
+        navigate(location.state || "/");
       })
       .catch((err) => {
         setalert("");

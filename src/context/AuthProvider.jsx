@@ -13,19 +13,23 @@ const AuthProvider = ({ children }) => {
   const [alert, setalert] = useState("");
   const [errr, setErr] = useState("");
   const [user, setuser] = useState(null);
+  const [loding, setLoding] = useState(true);
   // createuser
   const createuser = (email, password) => {
+    setLoding(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // signin user
   const userLogin = (email, password) => {
+    setLoding(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   // manage user
   useEffect(() => {
     const users = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
+      setLoding(false);
     });
     return () => {
       users();
@@ -33,10 +37,12 @@ const AuthProvider = ({ children }) => {
   }, []);
   // signOut
   const signOutUser = () => {
+    setLoding(true);
     return signOut(auth);
   };
   const authdata = {
     user,
+    loding,
     signOutUser,
     alert,
     setalert,

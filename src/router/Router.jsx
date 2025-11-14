@@ -6,6 +6,7 @@ import ToyDeatail from "../pages/toyDeatail/ToyDeatail";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Root from "../assets/Root/Root";
+import PrivetRoutes from "../routes/PrivetRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/toydeatail",
-        element: <ToyDeatail></ToyDeatail>,
+        element: (
+          <PrivetRoutes>
+            <ToyDeatail></ToyDeatail>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "/login",
