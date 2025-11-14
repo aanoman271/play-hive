@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const { createuser, setalert, alert, errr, setErr } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const RegisterHandle = (e) => {
+    e.preventDefault();
+    setErr("");
+    setalert("");
     const rx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // min length 6
     const message =
       "Password must contain at least one uppercase, one lowercase and one number (min 6 characters).";
 
-    setErr("");
-    setalert("");
-    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     if (!rx.test(password)) {
@@ -22,6 +22,7 @@ const Register = () => {
       .then((result) => {
         setalert("Account created successfully");
         setErr("");
+        navigate("/");
         console.log(result.user);
       })
 
@@ -43,6 +44,7 @@ const Register = () => {
           className="input"
           name="name"
           placeholder="Your name"
+          required
         />
 
         <label className="label">photo Url</label>

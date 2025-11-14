@@ -9,7 +9,7 @@ const ToyCards = ({ hometoy }) => {
         <figure className="h-44">
           <img src={hometoy.pictureURL} alt="" />
         </figure>
-        <div className="card-body">
+        <div className="card-body ">
           <h2 className="card-title">
             {hometoy.toyName}
             <div className="badge bg-amber-300">

@@ -1,20 +1,22 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const { setalert, alert, errr, setErr, userLogin } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const signinHAndle = (e) => {
     e.preventDefault();
     setErr("");
     setalert("");
+
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
     userLogin(email, password)
       .then((result) => {
         setalert("Login succesfull");
+        navigate("/");
         console.log(result.user);
         setErr("");
       })
