@@ -72,7 +72,7 @@ const Navbar = () => {
             {user && (
               <div className="relative group">
                 <img
-                  src={user.photoURL || "/default-avatar.png"}
+                  src={user.photoURL}
                   alt="User"
                   className="w-10 h-10 rounded-full ring-2 ring-warning cursor-pointer transition-all group-hover:ring-accent"
                 />

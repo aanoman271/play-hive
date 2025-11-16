@@ -4,9 +4,11 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const location = useLocation();
-  console.log(location);
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  const message =
+    "Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.";
 
-  const { setuser, setalert, alert, errr, setErr, userLogin } =
+  const { setuser, setalert, alert, signInGoogle, errr, setErr, userLogin } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const signinHAndle = (e) => {
@@ -16,6 +18,9 @@ const Login = () => {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
+    if (!passwordRegex.test(password)) {
+      return setErr(message);
+    }
     userLogin(email, password)
       .then((result) => {
         setalert("Login succesfull");
@@ -28,6 +33,20 @@ const Login = () => {
         setErr(err.message);
       });
     e.target.reset();
+  };
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+
+    signInGoogle()
+      .then((result) => {
+        setuser(result.user);
+        console.log(result.user);
+        setalert("Account created successfully");
+        navigate("/");
+      })
+      .catch((err) => {
+        setErr(err.message);
+      });
   };
   return (
     <div className="flex justify-center items-center h-screen ">
@@ -57,7 +76,11 @@ const Login = () => {
         <div className="flex justify-center items-center">
           <p className="font-bold">or</p>
         </div>
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          type="button"
+          onClick={handleGoogleSignIn}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"
