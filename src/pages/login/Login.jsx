@@ -4,8 +4,10 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const location = useLocation();
+  console.log(location);
 
-  const { setalert, alert, errr, setErr, userLogin } = useContext(AuthContext);
+  const { setuser, setalert, alert, errr, setErr, userLogin } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const signinHAndle = (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         setalert("Login succesfull");
-        console.log(result.user);
+        setuser(result.user);
         setErr("");
         navigate(location.state || "/");
       })

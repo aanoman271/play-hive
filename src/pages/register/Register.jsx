@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
@@ -36,20 +36,22 @@ const Register = () => {
         updateUser({ displayName: userName, photoURL: photoUrl })
           .then(() => {
             setuser({ ...users, displayName: userName, photoURL: photoUrl });
+            setalert("Account created successfully");
           })
-          .catch((err) => setuser(err));
-        setalert("Account created successfully");
-        setErr("");
-        navigate("/");
+          .catch((err) => {
+            setuser(users);
+            console.log(err);
+          });
       })
 
       .catch((err) => {
         setErr(err.message);
         setalert("");
       });
-    updateUser(userName, photoUrl);
 
     e.target.reset();
+
+    navigate("/");
   };
   return (
     <div className="flex justify-center items-center h-screen">

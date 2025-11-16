@@ -1,28 +1,31 @@
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
 import { RxDropdownMenu } from "react-icons/rx";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
+  const { setalert, setErr, user, signOutUser } = useContext(AuthContext);
   const handleSignOut = () => {
+    setErr("");
+    setalert("");
     signOutUser()
       .then(() => console.log("signOut succesfull"))
       .catch((err) => console.log(err.message));
+    navigate("/");
   };
   const navLink = (
-    <ul className="flex items-center gap-4">
+    <ul className=" flex items-center gap-4">
       <li>
-        <NavLink to="/">
-          <button className="btn btn-dash btn-warning">Home</button>
+        <NavLink className="btn btn-dash btn-warning" to="/">
+          Home
         </NavLink>
       </li>
       <li>
         {user && (
-          <Link to="/profile">
-            <button className="btn btn-dash btn-warning">My Profile</button>
-          </Link>
+          <NavLink className="btn btn-dash btn-warning" to="/profile">
+            My Profile
+          </NavLink>
         )}
       </li>
     </ul>
@@ -63,7 +66,29 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="hidden md:flex">{navLink}</div>
+        <div className="hidden md:flex">
+          <div className="flex items-center gap-2">
+            {navLink}
+            {user && (
+              <div className="relative group">
+                <img
+                  src={user.photoURL || "/default-avatar.png"}
+                  alt="User"
+                  className="w-10 h-10 rounded-full ring-2 ring-warning cursor-pointer transition-all group-hover:ring-accent"
+                />
+
+                <div className="absolute right-0 top-12 w-48 bg-white dark:bg-gray-800 shadow-xl rounded-xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border">
+                  <div className="flex items-center gap-3 mb-3">
+                    <p className="font-bold text-white text-sm">
+                      {user.displayName}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <div>
           {user ? (
             <button
@@ -73,7 +98,7 @@ const Navbar = () => {
               SignOut
             </button>
           ) : (
-            <Link to="/register">
+            <Link to="/login">
               <button className="btn btn-dash btn-warning">SignIn</button>
             </Link>
           )}

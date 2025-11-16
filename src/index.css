@@ -5,3 +5,6 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+li a.active {
+  @apply btn btn-warning text-white;
+}
