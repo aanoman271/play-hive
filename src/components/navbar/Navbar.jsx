@@ -91,15 +91,12 @@ const Navbar = () => {
 
         <div>
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="btn btn-dash btn-warning"
-            >
+            <button onClick={handleSignOut} className="btn btn-warning ">
               SignOut
             </button>
           ) : (
             <Link to="/login">
-              <button className="btn btn-dash btn-warning">SignIn</button>
+              <button className="btn btn-warning">SignIn</button>
             </Link>
           )}
         </div>

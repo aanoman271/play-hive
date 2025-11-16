@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import bgimg from "../../assets/vector-1758301600644-5f120e521b9a.avif";
 import { FaBangladeshiTakaSign, FaStarHalfStroke } from "react-icons/fa6";
 
 const ToyDeatail = () => {
+  const [submit, setsubmit] = useState("");
+  const HandleForm = (e) => {
+    e.preventDefault();
+    e.target.reset();
+    setsubmit("Submited");
+  };
   const { id } = useParams();
   const data = useLoaderData();
   console.log(id);
@@ -12,7 +18,7 @@ const ToyDeatail = () => {
   return (
     <div>
       <div
-        className="hero  min-h-screen"
+        className="  min-h-screen flex flex-col justify-center items-center gap-5"
         style={{
           backgroundImage: `url(${bgimg})`,
           backgroundSize: "cover",
@@ -55,6 +61,22 @@ const ToyDeatail = () => {
             </div>
           </div>
         </div>
+        {/* form */}
+        <form
+          onSubmit={HandleForm}
+          className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+        >
+          <label className="label">Name</label>
+          <input type="text" className="input" placeholder="Name" required />
+
+          <label className="label">Email</label>
+          <input type="email" className="input" placeholder="Email" required />
+
+          <button type="submit" className="btn btn-neutral mt-4">
+            Try Now
+          </button>
+          <p className="text-green-500">{submit}</p>
+        </form>
       </div>
     </div>
   );
