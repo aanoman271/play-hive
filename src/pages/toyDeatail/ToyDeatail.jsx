@@ -1,9 +1,61 @@
 import React from "react";
+import { useLoaderData, useParams } from "react-router";
+import bgimg from "../../assets/vector-1758301600644-5f120e521b9a.avif";
+import { FaBangladeshiTakaSign, FaStarHalfStroke } from "react-icons/fa6";
 
 const ToyDeatail = () => {
+  const { id } = useParams();
+  const data = useLoaderData();
+  console.log(id);
+
+  const filtertoy = data.find((tdata) => tdata.toyId === parseInt(id));
   return (
     <div>
-      <h1>toydeatailpage</h1>
+      <div
+        className="hero  min-h-screen"
+        style={{
+          backgroundImage: `url(${bgimg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className=" hero-content flex-col lg:flex-row">
+          <img
+            src={filtertoy.pictureURL}
+            className=" max-w-sm rounded-lg shadow-2xl"
+          />
+          <div>
+            <h1 className="text-5xl font-bold  drop-shadow-2xl">
+              {filtertoy.toyName}
+            </h1>
+            <p className="py-3 text-[15px] font-medium">
+              <span className="font-semibold ">Catageory :</span>
+              {filtertoy.subCategory}
+            </p>
+            <p className="py-3 border-b border-gray-400">
+              <span className="font-semibold">Describtion :</span>{" "}
+              {filtertoy.description}
+            </p>
+            <div className="my-3 flex justify-between items-center text-green-600">
+              <p className="flex items-center gap-1 font-extrabold text-xl">
+                <FaStarHalfStroke />
+                {filtertoy.rating}
+              </p>
+              <p className=" flex font-extrabold items-center gap-1 text-xl">
+                <FaBangladeshiTakaSign></FaBangladeshiTakaSign>
+                {filtertoy.price}
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-gray-700">
+              <small>
+                <span className="font-semibold">saller:</span>
+                {filtertoy.sellerName}
+              </small>
+              <small>{filtertoy.sellerEmail}</small>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

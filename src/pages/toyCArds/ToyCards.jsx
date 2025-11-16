@@ -30,7 +30,10 @@ const ToyCards = ({ hometoy }) => {
             </h5>
           </div>
         </div>
-        <Link to="/toydeatail" className="btn btn-soft btn-warning">
+        <Link
+          to={`/toydeatail/${hometoy.toyId}`}
+          className="btn btn-soft btn-warning"
+        >
           View More
         </Link>
       </div>

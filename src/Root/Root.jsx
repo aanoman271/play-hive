@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar from "../../components/navbar/Navbar";
 import { Outlet } from "react-router";
-import Slider from "../../slider/Slider";
-
+import Slider from "../slider/Slider";
+import Navbar from "../components/navbar/Navbar";
 const Root = () => {
   return (
     <div>

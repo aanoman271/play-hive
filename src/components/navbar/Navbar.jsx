@@ -1,10 +1,11 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { RxDropdownMenu } from "react-icons/rx";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
+  console.log(user);
   const handleSignOut = () => {
     signOutUser()
       .then(() => console.log("signOut succesfull"))
@@ -13,16 +14,16 @@ const Navbar = () => {
   const navLink = (
     <ul className="flex items-center gap-4">
       <li>
-        {" "}
         <NavLink to="/">
           <button className="btn btn-dash btn-warning">Home</button>
         </NavLink>
       </li>
       <li>
-        {" "}
-        <Link to="/profile">
-          <button className="btn btn-dash btn-warning">My Profile</button>
-        </Link>
+        {user && (
+          <Link to="/profile">
+            <button className="btn btn-dash btn-warning">My Profile</button>
+          </Link>
+        )}
       </li>
     </ul>
   );
@@ -61,6 +62,7 @@ const Navbar = () => {
             <p className="text-sm text-gray-500 -mt-1">Toys • Fun • Learning</p>
           </div>
         </div>
+
         <div className="hidden md:flex">{navLink}</div>
         <div>
           {user ? (

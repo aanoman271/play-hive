@@ -5,30 +5,31 @@ import Profile from "../pages/profile/Profile";
 import ToyDeatail from "../pages/toyDeatail/ToyDeatail";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
-import Root from "../assets/Root/Root";
 import PrivetRoutes from "../routes/PrivetRoutes";
+import Root from "../Root/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Root,
+    element: <Root></Root>,
     children: [
       {
         path: "/",
         Component: Home,
-        loader: () => fetch("toy.json"),
+        loader: () => fetch("../toy.json"),
       },
       {
         path: "/profile",
         Component: Profile,
       },
       {
-        path: "/toydeatail",
+        path: "/toydeatail/:id",
         element: (
           <PrivetRoutes>
             <ToyDeatail></ToyDeatail>
           </PrivetRoutes>
         ),
+        loader: () => fetch("../toy.json"),
       },
       {
         path: "/login",
