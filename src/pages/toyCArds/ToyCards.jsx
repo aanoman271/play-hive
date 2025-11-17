@@ -12,6 +12,7 @@ const ToyCards = ({ hometoy }) => {
       stored.push(hometoy.toyId);
       localStorage.setItem("wishList", JSON.stringify(stored));
     }
+    toast(`${hometoy.toyName} added to wish list`);
   };
   return (
     <div>

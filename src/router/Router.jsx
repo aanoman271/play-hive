@@ -8,6 +8,7 @@ import Register from "../pages/register/Register";
 import PrivetRoutes from "../routes/PrivetRoutes";
 import Root from "../Root/Root";
 import Errorpage from "../pages/errorPage/Errorpage";
+import WishList from "../pages/wishList/WishList";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,15 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoutes>
             <ToyDeatail></ToyDeatail>
+          </PrivetRoutes>
+        ),
+        loader: () => fetch("../toy.json"),
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PrivetRoutes>
+            <WishList></WishList>
           </PrivetRoutes>
         ),
         loader: () => fetch("../toy.json"),

@@ -1,4 +1,3 @@
-// src/components/PageTitle.jsx   (নতুন ফাইল)
 import { useEffect } from "react";
 
 const PageTitle = ({ title = "PlayHive" }) => {

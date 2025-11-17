@@ -23,6 +23,13 @@ const Navbar = () => {
       </li>
       <li>
         {user && (
+          <NavLink className="btn btn-dash btn-warning" to="/wishlist">
+            wishList
+          </NavLink>
+        )}
+      </li>
+      <li>
+        {user && (
           <NavLink className="btn btn-dash btn-warning" to="/profile">
             My Profile
           </NavLink>
