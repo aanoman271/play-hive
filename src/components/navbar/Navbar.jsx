@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { RxDropdownMenu } from "react-icons/rx";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -10,12 +11,12 @@ const Navbar = () => {
     setErr("");
     setalert("");
     signOutUser()
-      .then(() => console.log("signOut succesfull"))
-      .catch((err) => console.log(err.message));
+      .then(() => toast("signOut succesfull"))
+      .catch((err) => toast(err.message));
     navigate("/");
   };
   const navLink = (
-    <ul className=" flex items-center gap-4">
+    <>
       <li>
         <NavLink className="btn btn-dash btn-warning" to="/">
           Home
@@ -35,11 +36,11 @@ const Navbar = () => {
           </NavLink>
         )}
       </li>
-    </ul>
+    </>
   );
   return (
     <>
-      <div className="flex justify-between my-7">
+      <div className="flex justify-between my-7 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white p-5">
         {/* MOBILE DROPDOWN */}
         <div className="dropdown md:hidden">
           <div tabIndex={0} role="button" className="btn  m-1">
@@ -50,11 +51,7 @@ const Navbar = () => {
             tabIndex={0}
             className="dropdown-content menu bg-base-100 text-black rounded-box w-52 p-2 shadow z-[999]"
           >
-            <li>
-              <NavLink className="text-black" to="/">
-                Home
-              </NavLink>
-            </li>
+            {navLink}
           </ul>
         </div>
 
@@ -69,13 +66,13 @@ const Navbar = () => {
           {/* Brand Text */}
           <div>
             <h1 className="text-2xl font-extrabold text-gray-800">Play Hive</h1>
-            <p className="text-sm text-gray-500 -mt-1">Toys • Fun • Learning</p>
+            <p className="text-sm text-white -mt-1">Toys • Fun • Learning</p>
           </div>
         </div>
 
         <div className="hidden md:flex">
           <div className="flex items-center gap-2">
-            {navLink}
+            <ul className=" flex items-center gap-4">{navLink}</ul>
             {user && (
               <div className="relative group">
                 <img
@@ -96,11 +93,11 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flex items-center">
           {user ? (
-            <button onClick={handleSignOut} className="btn btn-warning ">
+            <Link to="/" onClick={handleSignOut} className="btn btn-warning ">
               SignOut
-            </button>
+            </Link>
           ) : (
             <Link to="/login">
               <button className="btn btn-warning">SignIn</button>
