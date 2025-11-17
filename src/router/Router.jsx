@@ -7,6 +7,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import PrivetRoutes from "../routes/PrivetRoutes";
 import Root from "../Root/Root";
+import Errorpage from "../pages/errorPage/Errorpage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         Component: Register,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: Errorpage,
   },
 ]);
 

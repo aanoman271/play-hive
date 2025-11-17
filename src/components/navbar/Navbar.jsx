@@ -72,7 +72,7 @@ const Navbar = () => {
             {user && (
               <div className="relative group">
                 <img
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   alt="User"
                   className="w-10 h-10 rounded-full ring-2 ring-warning cursor-pointer transition-all group-hover:ring-accent"
                 />
@@ -80,7 +80,7 @@ const Navbar = () => {
                 <div className="absolute right-0 top-12 w-48 bg-white dark:bg-gray-800 shadow-xl rounded-xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border">
                   <div className="flex items-center gap-3 mb-3">
                     <p className="font-bold text-white text-sm">
-                      {user.displayName}
+                      {user?.displayName}
                     </p>
                   </div>
                 </div>
