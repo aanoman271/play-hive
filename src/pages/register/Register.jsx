@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     setErr("");
     setalert("");
-    const rx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/; // min length 6
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     const message =
       "Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.";
@@ -28,7 +28,7 @@ const Register = () => {
     const password = e.target.password.value;
     const photoUrl = e.target.photo.value;
     const userName = e.target.name.value;
-    if (!rx.test(password)) {
+    if (!passwordRegex.test(password)) {
       return setErr(message);
     }
     createuser(email, password)

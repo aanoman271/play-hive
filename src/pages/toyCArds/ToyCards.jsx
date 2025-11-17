@@ -1,8 +1,18 @@
 import React from "react";
 import { FaBangladeshiTakaSign, FaStarHalfStroke } from "react-icons/fa6";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const ToyCards = ({ hometoy }) => {
+  const handleWishList = () => {
+    const stored = JSON.parse(localStorage.getItem("wishList") || "[]");
+    if (stored.includes(hometoy.toyId)) {
+      return toast("Alrady added to wish List");
+    } else {
+      stored.push(hometoy.toyId);
+      localStorage.setItem("wishList", JSON.stringify(stored));
+    }
+  };
   return (
     <div>
       <div className="card bg-base-100 w-96 shadow-sm">
@@ -30,12 +40,20 @@ const ToyCards = ({ hometoy }) => {
             </h5>
           </div>
         </div>
-        <Link
-          to={`/toydeatail/${hometoy.toyId}`}
-          className="btn btn-soft btn-warning"
-        >
-          View More
-        </Link>
+        <div className="flex justify-between items-center">
+          <Link
+            to={`/toydeatail/${hometoy.toyId}`}
+            className="btn btn-soft btn-warning"
+          >
+            View More
+          </Link>
+          <button
+            onClick={handleWishList}
+            className="btn btn-warning btn-soft text-green-500"
+          >
+            Add wish List
+          </button>
+        </div>
       </div>
     </div>
   );

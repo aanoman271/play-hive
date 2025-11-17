@@ -4,6 +4,7 @@ import Slider from "../slider/Slider";
 import HomeBanner from "./HomeBanner/HomeBanner";
 import SecBanner from "./HomeBanner/SecBanner";
 import { useLoaderData } from "react-router";
+import PageTitle from "./titlePage/PageTitle";
 
 const Home = () => {
   const toys = useLoaderData();
@@ -11,6 +12,7 @@ const Home = () => {
 
   return (
     <>
+      <PageTitle title="Home" />
       <SecBanner></SecBanner>
       <Slider></Slider>
 
