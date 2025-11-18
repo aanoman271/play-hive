@@ -9,6 +9,7 @@ import PrivetRoutes from "../routes/PrivetRoutes";
 import Root from "../Root/Root";
 import Errorpage from "../pages/errorPage/Errorpage";
 import WishList from "../pages/wishList/WishList";
+import ResetForm from "../pages/reset/ResetForm";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: () => fetch("../toy.json"),
+      },
+      {
+        path: "/resetPassword",
+        element: <ResetForm></ResetForm>,
       },
       {
         path: "/login",

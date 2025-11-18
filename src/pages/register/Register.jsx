@@ -147,6 +147,14 @@ const Register = () => {
             </svg>
             Login with Google
           </button>
+          <div>
+            <Link
+              to="/resetPassword"
+              className="link link-primary link-hover text-blue-500"
+            >
+              forget password
+            </Link>
+          </div>
           <p className="font-semibold">
             Already Have an account?{" "}
             <Link className="text-blue-500" to="/login">

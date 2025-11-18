@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -58,10 +59,13 @@ const AuthProvider = ({ children }) => {
     setAllToy(!allToy);
     console.log(allToy);
   };
-
+  // Reset pass
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   const authdata = {
     user,
-
+    resetPassword,
     handleAllToy,
     setAllToy,
     allToy,

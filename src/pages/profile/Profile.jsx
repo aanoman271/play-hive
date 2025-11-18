@@ -17,7 +17,7 @@ const Profile = () => {
       .catch((err) => {
         setErr(err.message);
       });
-    console.log(photo, Name);
+    e.target.reset();
   };
   return (
     <>

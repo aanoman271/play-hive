@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import PageTitle from "../titlePage/PageTitle";
 
 const Login = () => {
   const location = useLocation();
+  const [email, setEmail] = useState("");
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
   const message =
     "Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.";
@@ -63,6 +64,8 @@ const Login = () => {
             name="email"
             className="input"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <label className="label">Password</label>
@@ -113,6 +116,15 @@ const Login = () => {
             </svg>
             Login with Google
           </button>
+          <div>
+            <Link
+              to="/resetPassword"
+              state={{ email }}
+              className="link link-primary link-hover text-blue-500"
+            >
+              forget password
+            </Link>
+          </div>
           <p className="font-semibold">
             New to our store?{" "}
             <Link className="text-blue-500" to="/register">
