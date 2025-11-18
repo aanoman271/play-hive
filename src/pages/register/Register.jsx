@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { FaEyeLowVision, FaRegEye } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const [showpass, setShowPass] = useState(false);
   const {
     createuser,
     setuser,
@@ -14,6 +17,9 @@ const Register = () => {
     setErr,
   } = useContext(AuthContext);
   const navigate = useNavigate();
+  const handlePass = () => {
+    setShowPass(!showpass);
+  };
 
   const RegisterHandle = (e) => {
     e.preventDefault();
@@ -37,7 +43,8 @@ const Register = () => {
         updateUser({ displayName: userName, photoURL: photoUrl })
           .then(() => {
             setuser({ ...users, displayName: userName, photoURL: photoUrl });
-            setalert("Account created successfully");
+            toast("Account created successfully");
+
             navigate("/");
           })
           .catch((err) => {
@@ -59,8 +66,9 @@ const Register = () => {
     signInGoogle()
       .then((result) => {
         setuser(result.user);
-        console.log(result.user);
+
         setalert("Account created successfully");
+        toast("Account created successfully");
         navigate("/");
       })
       .catch((err) => {
@@ -98,15 +106,25 @@ const Register = () => {
             name="email"
             placeholder="Email"
           />
-
-          <label className="label">Password</label>
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="Password"
-          />
-
+          <div className="relative">
+            <label className="label">Password</label>
+            <input
+              type={showpass ? "text" : "password"}
+              className="input"
+              name="password"
+              placeholder="Password"
+            />
+            <div
+              onClick={handlePass}
+              className="absolute top-[50%] right-4 cursor-pointer "
+            >
+              {showpass ? (
+                <FaEyeLowVision className=" w-6" />
+              ) : (
+                <FaRegEye className=" w-6" />
+              )}
+            </div>
+          </div>
           <button type="submit" className="btn btn-neutral mt-4">
             Register
           </button>

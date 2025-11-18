@@ -57,7 +57,6 @@ const AuthProvider = ({ children }) => {
   const [allToy, setAllToy] = useState(false);
   const handleAllToy = () => {
     setAllToy(!allToy);
-    console.log(allToy);
   };
   // Reset pass
   const resetPassword = (email) => {

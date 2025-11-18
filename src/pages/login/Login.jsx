@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import PageTitle from "../titlePage/PageTitle";
 import { FaEyeLowVision, FaRegEye } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const location = useLocation();
@@ -17,7 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
   const handlePass = () => {
     setShowPass(!showpass);
-    console.log(showpass);
   };
   const signinHAndle = (e) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         setalert("Login succesfull");
+        toast("Login succesfull");
         setuser(result.user);
         setErr("");
         navigate(location.state || "/");
@@ -48,8 +49,9 @@ const Login = () => {
     signInGoogle()
       .then((result) => {
         setuser(result.user);
-        console.log(result.user);
-        setalert("Account created successfully");
+
+        setalert("Log in successfully");
+        toast("Log in  successfully");
         navigate("/");
       })
       .catch((err) => {

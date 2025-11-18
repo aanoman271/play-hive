@@ -1,16 +1,41 @@
-# React + Vite
+# PlayHive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**A fun and colorful toy shop website for kids!**  
+Here parents and kids can see toys, read details, add to wishlist, and buy their favorite toys easily.
 
-Currently, two official plugins are available:
+### Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[https://play-hive-xxx.netlify.app](https://play-hive-xxx.netlify.app) (ডেপ্লয় করার পর লিঙ্ক বসাবে)
 
-## React Compiler
+### Purpose of This Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To make a beautiful, easy-to-use toy website where:
 
-## Expanding the ESLint configuration
+- Anyone can see toys without login
+- Logged-in users can see toy details, add to wishlist, and update their profile
+- Kids and parents enjoy bright colors and fun design
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Key Features
+
+- Login / Register (Email + Google)
+- See all toys with picture, price, rating
+- Click “View Details” → go to toy page (only if logged in)
+- Add toys to Wishlist
+- My Profile → change name & photo
+- Hover on user photo in navbar shows name
+- Reset password → sends real reset email
+- Fully mobile & tablet friendly
+- Beautiful slider on home page
+- Colorful footer with social links
+- 404 page if wrong link
+
+### Technologies Used
+
+- React + Vite
+- Tailwind CSS + DaisyUI (for pretty design)
+- Firebase (login & user info)
+- React Router (different pages)
+- daisyui slider (home slider)
+- LocalStorage (wishlist)
+
+Made with love by **Noman** for Programming Hero Assignment

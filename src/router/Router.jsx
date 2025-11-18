@@ -20,10 +20,15 @@ const router = createBrowserRouter([
         path: "/",
         Component: Home,
         loader: () => fetch("../toy.json"),
+        hydrateFallbackElement: <loader></loader>,
       },
       {
         path: "/profile",
-        Component: Profile,
+        element: (
+          <PrivetRoutes>
+            <Profile></Profile>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "/toydeatail/:id",
@@ -33,6 +38,7 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: () => fetch("../toy.json"),
+        hydrateFallbackElement: <loader></loader>,
       },
       {
         path: "/wishlist",
@@ -42,6 +48,7 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: () => fetch("../toy.json"),
+        hydrateFallbackElement: <loader></loader>,
       },
       {
         path: "/resetPassword",

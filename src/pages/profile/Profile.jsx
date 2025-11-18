@@ -46,6 +46,7 @@ const Profile = () => {
                 name="name"
                 className="w-full input"
                 placeholder="Name"
+                required
               />
               <label className="label">PhotoUrl</label>
               <input
@@ -53,6 +54,7 @@ const Profile = () => {
                 name="photo"
                 className="w-full input"
                 placeholder="PhotoUrl"
+                required
               />
 
               <button type="submit" className="btn btn-neutral mt-4">
