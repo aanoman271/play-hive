@@ -10,7 +10,7 @@ const Profile = () => {
 
       <div>
         <div className="hero bg-base-200 min-h-screen ">
-          <div className="hero-content justify-center flex-col lg:flex-row">
+          <div className="hero-content flex-col lg:flex-row">
             <img
               src={user?.photoURL}
               className="w-36 h-36 rounded-full shadow-2xl"

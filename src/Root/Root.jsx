@@ -6,7 +6,7 @@ import Fotter from "../components/navbar/fotter/Fotter";
 const Root = () => {
   return (
     <div>
-      <header className="w-11/12 mx-auto">
+      <header>
         <Navbar></Navbar>
       </header>
       <main className="w-11/12 mx-auto">

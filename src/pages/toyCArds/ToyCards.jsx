@@ -1,7 +1,7 @@
-import React from "react";
 import { FaBangladeshiTakaSign, FaStarHalfStroke } from "react-icons/fa6";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
 
 const ToyCards = ({ hometoy }) => {
   const handleWishList = () => {
@@ -12,6 +12,7 @@ const ToyCards = ({ hometoy }) => {
       stored.push(hometoy.toyId);
       localStorage.setItem("wishList", JSON.stringify(stored));
     }
+
     toast(`${hometoy.toyName} added to wish list`);
   };
   return (
@@ -50,7 +51,7 @@ const ToyCards = ({ hometoy }) => {
           </Link>
           <button
             onClick={handleWishList}
-            className="btn btn-warning btn-soft text-green-500"
+            className="btn btn-warning text-green-500"
           >
             Add wish List
           </button>

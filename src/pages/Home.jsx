@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import ToyCards from "./toyCArds/ToyCards";
 import Slider from "../slider/Slider";
 import HomeBanner from "./HomeBanner/HomeBanner";
 import SecBanner from "./HomeBanner/SecBanner";
 import { useLoaderData } from "react-router";
 import PageTitle from "./titlePage/PageTitle";
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
+  const { allToy, handleAllToy } = useContext(AuthContext);
   const toys = useLoaderData();
   const slicestoy = toys.slice(0, 6);
 
@@ -17,16 +19,27 @@ const Home = () => {
       <Slider></Slider>
 
       <div>
-        <h1 className="text-3xl text-center font-bold mb-3 ">
-          Our popular toys
-        </h1>
+        {allToy ? (
+          <h1 className="text-3xl text-center font-bold mb-3 ">Our All Toys</h1>
+        ) : (
+          <h1 className="text-3xl text-center font-bold mb-3 ">
+            Our Popular Toys
+          </h1>
+        )}
       </div>
       <div className="grid grid-cols-3   gap-4">
-        {slicestoy.map((hometoy) => (
+        {(allToy ? toys : slicestoy).map((hometoy) => (
           <ToyCards key={hometoy.toyId} hometoy={hometoy}></ToyCards>
         ))}
       </div>
-
+      <div
+        className="flex justify-center items-center my-3 h-20 animate-pulse delay-1000 bg-gradient-to-b from-gray-200 to-gray-500
+"
+      >
+        <button onClick={handleAllToy} className="btn btn-warning">
+          show more
+        </button>
+      </div>
       <HomeBanner></HomeBanner>
     </>
   );

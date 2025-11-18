@@ -6,7 +6,9 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { setalert, setErr, user, signOutUser } = useContext(AuthContext);
+
+  const { allToy, handleAllToy, setalert, setErr, user, signOutUser } =
+    useContext(AuthContext);
   const handleSignOut = () => {
     setErr("");
     setalert("");
@@ -21,6 +23,14 @@ const Navbar = () => {
         <NavLink className="btn btn-dash btn-warning" to="/">
           Home
         </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={handleAllToy}
+          className={`btn ${!allToy && "btn-dash"} btn-warning`}
+        >
+          All Toy
+        </button>
       </li>
       <li>
         {user && (
@@ -40,7 +50,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="flex justify-between my-7 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white p-5">
+      <div className="flex justify-between mb-7 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white p-5">
         {/* MOBILE DROPDOWN */}
         <div className="dropdown md:hidden">
           <div tabIndex={0} role="button" className="btn  m-1">

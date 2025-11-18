@@ -53,8 +53,18 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
   };
 
+  const [allToy, setAllToy] = useState(false);
+  const handleAllToy = () => {
+    setAllToy(!allToy);
+    console.log(allToy);
+  };
+
   const authdata = {
     user,
+
+    handleAllToy,
+    setAllToy,
+    allToy,
     setuser,
     updateUser,
     signInGoogle,
