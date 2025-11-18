@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import PageTitle from "../titlePage/PageTitle";
+import { FaEyeLowVision, FaRegEye } from "react-icons/fa6";
 
 const Login = () => {
   const location = useLocation();
@@ -12,7 +13,12 @@ const Login = () => {
 
   const { setuser, setalert, alert, signInGoogle, errr, setErr, userLogin } =
     useContext(AuthContext);
+  const [showpass, setShowPass] = useState(false);
   const navigate = useNavigate();
+  const handlePass = () => {
+    setShowPass(!showpass);
+    console.log(showpass);
+  };
   const signinHAndle = (e) => {
     e.preventDefault();
     setErr("");
@@ -68,14 +74,25 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label className="label">Password</label>
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="Password"
-          />
-
+          <div className="relative">
+            <label className="label">Password</label>
+            <input
+              type={showpass ? "text" : "password"}
+              className="input"
+              name="password"
+              placeholder="Password"
+            />
+            <div
+              onClick={handlePass}
+              className="absolute top-[50%] right-4 cursor-pointer "
+            >
+              {showpass ? (
+                <FaEyeLowVision className=" w-6" />
+              ) : (
+                <FaRegEye className=" w-6" />
+              )}
+            </div>
+          </div>
           <button type="submit" className="btn btn-neutral mt-4">
             Login
           </button>
