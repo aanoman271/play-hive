@@ -27,7 +27,7 @@ const Home = () => {
           </h1>
         )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center   gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center   gap-5">
         {(allToy ? toys : slicestoy).map((hometoy) => (
           <ToyCards key={hometoy.toyId} hometoy={hometoy}></ToyCards>
         ))}
