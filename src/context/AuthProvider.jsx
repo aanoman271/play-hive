@@ -27,7 +27,9 @@ const AuthProvider = ({ children }) => {
   // signin user
   const userLogin = (email, password) => {
     setLoding(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).finally(() =>
+      setLoding(false)
+    );
   };
   // manage user
   useEffect(() => {

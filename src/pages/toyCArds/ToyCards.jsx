@@ -1,10 +1,17 @@
+import { useContext } from "react";
 import { FaBangladeshiTakaSign, FaStarHalfStroke } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
-
 const ToyCards = ({ hometoy }) => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleWishList = () => {
+    if (!user) {
+      toast("Log in First");
+      navigate("/login");
+      return;
+    }
     const stored = JSON.parse(localStorage.getItem("wishList") || "[]");
     if (stored.includes(hometoy.toyId)) {
       return toast("Alrady added to wish List");
