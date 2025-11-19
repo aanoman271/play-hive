@@ -8,7 +8,7 @@ const WishList = () => {
   const data = useLoaderData();
   const [wishList, setWishList] = useState([]);
   useEffect(() => {
-    const storedId = JSON.parse(localStorage.getItem("wishList") || []);
+    const storedId = JSON.parse(localStorage.getItem("wishList") || "[]");
 
     const filterdToy = data.filter((toy) => storedId.includes(toy.toyId));
     setWishList(filterdToy);
