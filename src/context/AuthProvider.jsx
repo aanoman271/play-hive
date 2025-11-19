@@ -29,7 +29,9 @@ const AuthProvider = ({ children }) => {
   // signin user
   const userLogin = (email, password) => {
     setLoding(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).finally(() =>
+      setLoding(false)
+    );
   };
   // manage user
   useEffect(() => {
@@ -48,8 +50,9 @@ const AuthProvider = ({ children }) => {
   };
   // signIn google
   const signInGoogle = () => {
+    setLoding(true);
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider).finally(() => setLoding(false));
   };
 
   const updateUser = (userInfo) => {
@@ -65,7 +68,8 @@ const AuthProvider = ({ children }) => {
   };
   // Reset pass
   const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email);
+    setLoding(true);
+    return sendPasswordResetEmail(auth, email).finally(() => setLoding(false));
   };
   const authdata = {
     user,
