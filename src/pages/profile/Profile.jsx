@@ -58,7 +58,7 @@ const Profile = () => {
               />
 
               <button type="submit" className="btn btn-neutral mt-4">
-                Login
+                Save change
               </button>
               <div>
                 <p className="text-red-400 link link-hover">{errr}</p>
