@@ -21,15 +21,15 @@ const AuthProvider = ({ children }) => {
   // createuser
   const createuser = (email, password) => {
     setLoding(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).finally(() =>
+      setLoding(false)
+    );
   };
 
   // signin user
   const userLogin = (email, password) => {
     setLoding(true);
-    return signInWithEmailAndPassword(auth, email, password).finally(() =>
-      setLoding(false)
-    );
+    return signInWithEmailAndPassword(auth, email, password);
   };
   // manage user
   useEffect(() => {
@@ -53,7 +53,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUser = (userInfo) => {
-    return updateProfile(auth.currentUser, userInfo);
+    setLoding(true);
+    return updateProfile(auth.currentUser, userInfo).finally(() =>
+      setLoding(false)
+    );
   };
 
   const [allToy, setAllToy] = useState(false);
